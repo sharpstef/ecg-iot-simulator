@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Voltage/ECG Simulator</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+</head>
+
+<body>
+    <div id="form-content" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal">x</a>
+                    <h3 class="modal_title" id="myModalLabel">Set IoT Credentials</h3>
+                </div>
+                <div class="modal-body">
+                    <form id="iotCreds" method="POST">
+                        <label for="mode" style ="display:block">Simulator Mode</label>
+                        <select id="mode" class="form-control">
+                            <option value="volt">Voltage/Temperature</option>
+                            <option value="ecg">ECG Heart Rate</option>
+                        </select>
+                        <br ><br >
+                        <label for="orgId" style="display: block">IoT Organization ID</label>
+                        <input id="orgId" type="text" class="form-control" placeholder="IoT Organization ID" /><br/>
+                        <label for="deviceType" style="display: block">Device Type</label>
+                        <input id="deviceType" type="text" class="form-control" placeholder="Device Type" /><br/>
+                        <label for="deviceId" style="display: block">Device ID</label>
+                        <input id="deviceId" type="text" class="form-control" placeholder="Device ID" /><br/>
+                        <label for="authToken" style="display: block">Auth Token</label>
+                        <input id="authToken" type="text" class="form-control" placeholder="Auth Token" /><br/><br/>
+                        <div id="errorMessageContainer" style="text-align: left; color: red"><span id="errorMessage"></span></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="save" class="btn btn-primary">Save</button>
+                    <a href="#" class="btn" onclick="$('#errorMessage').text('')" data-dismiss="modal">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class='header'>
+            <div class='pull-left'>
+                <table class='table table-condensed'>
+                    <tr>
+                        <td align='left'>
+                            <img src='images/logo.png' width='25%' />
+                        </td>
+                        <td align='left' style='vertical-align:middle'>
+                            <h4>Voltage Simulator</h4>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class='col-md-12'>
+                <hr />
+            </div>
+        </div>
+        <div class="row" style="min-height:563px; height: auto">
+            <table width="100%" height="100%" border="0" cellspacing="0">
+                <tr height="563px">
+                    <td>
+                        <div id="ex0"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <hr />
+                        <table width="100%" border="0" cellspacing="0">
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td width="33%" style="text-align: center">
+                                    <div class="control-group">
+                                        <label class="control-label" for="Settings">Settings:&nbsp;</label><span id="settingsStatus" class="disconnected">Not provided</span>
+                                        <div class="controls">
+                                            <button type="button" id="Settings" class="btn btn-primary" data-toggle="modal" data-target="#form-content">Settings ...</button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td width="33%" style="text-align: center">
+                                    <div class="control-group">
+                                        <label class="control-label" for="Connect">Connection status:&nbsp;</label><span id="connectionStatus" class="disconnected">Disconnected</span>
+                                        <div class="controls">
+                                            <button type="button" id="Connect" class="btn btn-primary">Connect</button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td width="33%" style="text-align: center">
+                                    <div class="control-group">
+                                        <label class="control-label" for="Run">Simulator</label>
+                                        <div class="controls">
+                                            <button type="button" id="Run" class="btn btn-primary">Run simulation</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center">&nbsp;</h3>
+                                    <td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center">&nbsp;</h3>
+                                    <td>
+                            </tr>
+
+                        </table>
+                        </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="control-group">
+                    <label class="control-label" for="addFeatures">Status messages:</label>
+                    <div class="controls">
+                        <textarea class='form-control' cols='60' id='logger' name='logger' placeholder='Log output for important events go here' rows='6'></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p></p>
+                <p style="font-size: 75%; font-family: Verdana">Copyright &copy; IBM Corporation 2015. Raw ECG data was generated once using
+                    <em>ECGSYN: A realistic ECG waveform generator.</em> and then randomized slightly at runtime. ECGSYN was written by Patrick McSharry from the Department of Engineering Science, University of Oxford, and by Gari Clifford of the Laboratory for Computational Physiology at MIT. ECGSYN is available via the GNU Public License and can be downloaded here <a href="http://www.physionet.org/physiotools/ecgsyn/">http://www.physionet.org/physiotools/ecgsyn/</a></p>
+                <p></p>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- Scripts -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
+    <script src="js/ecgsyn3.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.3.5.js" ></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

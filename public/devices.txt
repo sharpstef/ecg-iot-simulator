@@ -1,0 +1,5 @@
+org=old7di6
+type=simulator
+id=wavesim
+auth-method=token
+auth-token=&mpfiqCUMEXL)SaRrb

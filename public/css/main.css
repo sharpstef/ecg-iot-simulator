@@ -1,0 +1,54 @@
+body {
+	background-color: #f4f4f4;
+}
+
+table {
+	margin:0; 
+	padding:0;
+}
+
+hr {
+	margin:0; 
+	padding:0; 
+	border-color: #d4d4d4;
+}
+
+.row {
+	margin-bottom: 1px;
+}
+
+.container {
+	height:100%; 
+	padding: 0;
+}
+
+.pull-left {
+	margin:0; 
+	padding:0; 
+	display:inline-block;
+}
+
+connected {
+		     color: rgb(0,255,0);
+			 font-size: 85%;
+			 font-weight: bold;
+			 font-style: italic;
+		  }
+		  .disconnected {
+		    color: rgb(255,0,0);
+			 font-size: 85%;
+			 font-weight: bold;
+			 font-style: italic;
+		  }
+		  
+		.mycontainer div {
+            margin:0px auto;
+            width:100%;
+            height:100%;
+            background-color:#f4f4f4;
+            border-radius: 25px;
+            padding:10px 10px 10px 10px;
+            border:none;
+            position: relative;
+           z-index: 10
+		}
