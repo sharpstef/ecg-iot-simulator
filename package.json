@@ -12,6 +12,7 @@
 		"request":"*",
 		"ibmiotf":"*",
 		"socket.io":"*",
+		"cf-deployment-tracker-client":"*",
 		"express-session":"*",
 		"ip":"*"
 		
