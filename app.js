@@ -62,6 +62,8 @@ http.listen(appEnv.port, function() {
     console.log('listening on ' + appEnv.port);
 });
 
+require("cf-deployment-tracker-client").track();
+
 io.on('connection', function(socket) {
     console.log("Sockets connected.");
 
