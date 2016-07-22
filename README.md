@@ -5,6 +5,8 @@ Coming in v2: More sensor data!
 ##Overview
 The ecg-iot-simulator replaces the need for a physical sensor when prototyping applications that use heart rate or voltage/temperature data. The application does not replace authentic data, but instead simulates the type of data expected from these sensors. 
 
+![alt text](https://github.com/slkaczma/ecg-iot-simulator/blob/master/images/simulatorrunning.png "ECG Simulator and Console Log")
+
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/slkaczma/ecg-iot-simulator)
 
 ##Run the app on Bluemix
@@ -45,6 +47,7 @@ The ecg-iot-simulator replaces the need for a physical sensor when prototyping a
 10. Follow the instructions for adding a device to the Watson IoT foundation: https://developer.ibm.com/recipes/tutorials/how-to-register-devices-in-ibm-iot-foundation/
 
 11. Fill in the form for settings in the user interface:
+![alt text](https://github.com/slkaczma/ecg-iot-simulator/blob/master/images/settingsform.png "ECG Simulator and Console Log")
 
 ##Run the app locally
 1. If you do not already have a Bluemix account, [sign up here](https://console.ng.bluemix.net/registration/)
@@ -79,6 +82,7 @@ The ecg-iot-simulator replaces the need for a physical sensor when prototyping a
 8. Follow the instructions for adding a device to the Watson IoT foundation: https://developer.ibm.com/recipes/tutorials/how-to-register-devices-in-ibm-iot-foundation/
 
 9. Fill in the form for settings in the user interface:
+![alt text](https://github.com/slkaczma/ecg-iot-simulator/blob/master/images/settingsform.png "ECG Simulator and Console Log")
 
 ## Troubleshooting
 
