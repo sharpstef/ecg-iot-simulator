@@ -1,4 +1,4 @@
-# Voltage/Temperature and ECG Internet of Thigns Simulator
+# Voltage/Temperature and ECG Internet of Things Simulator
 
 Coming in v2: More sensor data!
 
