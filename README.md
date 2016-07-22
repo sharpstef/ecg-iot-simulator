@@ -42,6 +42,9 @@ The ecg-iot-simulator replaces the need for a physical sensor when prototyping a
   ```
   $ cf push
   ```
+10. Follow the instructions for adding a device to the Watson IoT foundation: https://developer.ibm.com/recipes/tutorials/how-to-register-devices-in-ibm-iot-foundation/
+
+11. Fill in the form for settings in the user interface:
 
 ##Run the app locally
 1. If you do not already have a Bluemix account, [sign up here](https://console.ng.bluemix.net/registration/)
@@ -72,6 +75,10 @@ The ecg-iot-simulator replaces the need for a physical sensor when prototyping a
   ```
   node app
   ```
+  
+8. Follow the instructions for adding a device to the Watson IoT foundation: https://developer.ibm.com/recipes/tutorials/how-to-register-devices-in-ibm-iot-foundation/
+
+9. Fill in the form for settings in the user interface:
 
 ## Troubleshooting
 
