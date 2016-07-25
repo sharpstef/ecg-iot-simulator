@@ -101,6 +101,7 @@ socket.on("iotConnected", function(res) {
     // Broker is connected, enable the simulation button
     connected = true;
     $('#Run').prop('disabled', false);
+	$('#Settings').prop('disabled', true);
     $('#Connect').html('Disconnect');
     $('#connectionStatus').html('Connected');
     $('#connectionStatus').removeClass('disconnected').addClass('connected');
@@ -120,6 +121,7 @@ socket.on("iotDisconnected", function() {
     $('#Connect').html('Connect');
     $('#connectionStatus').html('Disconnected');
     $('#connectionStatus').removeClass('connected').addClass('disconnected');
+	$('#Settings').prop('disabled', false);
 
 });
 
@@ -127,6 +129,12 @@ socket.on("iotDisconnected", function() {
 socket.on("reset", function() {
 	log("Device error detected. Received command to calibrate and restart.");
 	startSimulation();
+	
+});
+
+// Received reset from the server
+socket.on("iotError", function() {
+	log("Error with the IoT Foundation. Check your service.");
 	
 });
 
