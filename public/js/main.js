@@ -42,7 +42,7 @@ var updateInterval = 500; // How often to update the data in the graph
 var dps = []; // Graph data
 var dataLength = 1025; // number of dataPoints visible initially
 var numRecords = 7681;
-var temperature;
+var temperature = 0;
 var iterations = 0;
 var maxValue = 4.0;
 var minValue = 0.0;
@@ -88,16 +88,16 @@ socket.on("connect", function() {
     console.log("Connected to socket server");
 });
 
+socket.on("disconnect", function() {
+	$.get('/iotDisconnect', function(res) {
+
+            log(res);
+
+        }); // End get
+});
+
 // Do initial setup for the graph and data
 initialize();
-
-// Update connect status for IoT
-socket.on("iotConnected", function(res) {
-
-    // Log out the message to the web console and the index log feed 
-    console.log("Successfully connected to the IoT broker");
-    log('Successfully connected to the IoT broker');
-});
 
 // Update the interface when user successfully disconnects from the IoT Foundation
 socket.on("iotDisconnected", function() {
@@ -182,6 +182,10 @@ function iotConnect() {
             $('#Connect').html('Disconnect');
             $('#connectionStatus').html('Connected');
             $('#connectionStatus').removeClass('disconnected').addClass('connected');
+			
+			// Log out the message to the web console and the index log feed 
+            console.log("Successfully connected to the IoT broker");
+            log('Successfully connected to the IoT broker');
 
         }); // End post
     } else {
@@ -214,6 +218,7 @@ function startSimulation() {
     timerId = setInterval(function() {
         updateData();
     }, updateInterval);
+	
 }
 
 /**
