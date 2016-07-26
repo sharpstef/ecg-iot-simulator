@@ -88,8 +88,8 @@ io.on('connection', function(socket) {
         console.log("Received request to connect to IoT Foundation" + JSON.stringify(req.body));
 
         connectIoT(req.body);
-
-        return res;
+		
+		res.send("Connected");
     });
     
     app.get('/iotDisconnect', function(req, res) {
@@ -125,14 +125,6 @@ io.on('connection', function(socket) {
 
         deviceClient.on("connect", function() {
             console.log("Connected to broker!");
-
-            var res = "Connection success";
-
-            socket.broadcast.emit("iotConnected", {
-                status: "Connected to IoT broker"
-            });
-
-            return res;
 
         });
 
