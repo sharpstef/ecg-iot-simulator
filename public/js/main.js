@@ -97,14 +97,6 @@ socket.on("iotConnected", function(res) {
     // Log out the message to the web console and the index log feed 
     console.log("Successfully connected to the IoT broker");
     log('Successfully connected to the IoT broker');
-
-    // Broker is connected, enable the simulation button
-    connected = true;
-    $('#Run').prop('disabled', false);
-	$('#Settings').prop('disabled', true);
-    $('#Connect').html('Disconnect');
-    $('#connectionStatus').html('Connected');
-    $('#connectionStatus').removeClass('disconnected').addClass('connected');
 });
 
 // Update the interface when user successfully disconnects from the IoT Foundation
@@ -183,7 +175,13 @@ function iotConnect() {
 
         $.post('/iotConnect', data, function(res) {
 
-            log(res);
+            // Broker is connected, enable the simulation button
+            connected = true;
+            $('#Run').prop('disabled', false);
+	        $('#Settings').prop('disabled', true);
+            $('#Connect').html('Disconnect');
+            $('#connectionStatus').html('Connected');
+            $('#connectionStatus').removeClass('disconnected').addClass('connected');
 
         }); // End post
     } else {
