@@ -2,7 +2,7 @@
 /*globals google */
 //------------------------------------------------------------------------------------------------
 // Frequency/Temperature and ECG Simulator
-// 
+//
 // Authors: David Carew @djccarew <david.carew@us.ibm.com>
 //          Stefania Kaczmarczyk @slkaczma <slkaczma@us.ibm.com>
 //
@@ -38,7 +38,7 @@ google.load('visualization', '1', {
   Define global variables and set HTML properties to defaults
 
 *************************************************************************************************/
-var updateInterval = 500; // How often to update the data in the graph 
+var updateInterval = 500; // How often to update the data in the graph
 var dps = []; // Graph data
 var dataLength = 1025; // number of dataPoints visible initially
 var numRecords = 7681;
@@ -121,25 +121,25 @@ socket.on("iotDisconnected", function() {
 socket.on("reset", function() {
 	log("Device error detected. Received command to calibrate and restart.");
 	startSimulation();
-	
+
 });
 
 // Received reset from the server
 socket.on("iotError", function() {
 	log("Error with the IoT Foundation. Check your service.");
-	
+
 });
 
 /*************************************************************************************************
 
-  Functions 
+  Functions
 
 *************************************************************************************************/
 /**
  * log
  * Formats data to be printed in the log on the index.html for the user
  * @param {String} data
- * 
+ *
  */
 function log(data) {
     var now = new Date();
@@ -153,13 +153,13 @@ function log(data) {
 
 /**
  * iotConnect
- * Sets all of the connection information for the IoT Foundation from user generated values and 
+ * Sets all of the connection information for the IoT Foundation from user generated values and
  * initiates a post request the server to connect to the broker.
- * 
+ *
  */
 function iotConnect() {
 
-    // Check if a the client already registers a connection. If not, send a POST to the server. 
+    // Check if a the client already registers a connection. If not, send a POST to the server.
     // If connected then send a disconnect to the IoT Foundation.
     if (!connected) {
         console.log("Sending request to connect to the broker.");
@@ -182,8 +182,8 @@ function iotConnect() {
             $('#Connect').html('Disconnect');
             $('#connectionStatus').html('Connected');
             $('#connectionStatus').removeClass('disconnected').addClass('connected');
-			
-			// Log out the message to the web console and the index log feed 
+
+			// Log out the message to the web console and the index log feed
             console.log("Successfully connected to the IoT broker");
             log('Successfully connected to the IoT broker');
 
@@ -200,7 +200,7 @@ function iotConnect() {
 /**
  * startSimulation
  * Reset simulation display and create the setInterval function for updating.
- * 
+ *
  */
 function startSimulation() {
     if (dps.length > 0) {
@@ -218,13 +218,13 @@ function startSimulation() {
     timerId = setInterval(function() {
         updateData();
     }, updateInterval);
-	
+
 }
 
 /**
  * updateData
  * Update the data in the graph and send a new data message to the IoT Foundation
- * 
+ *
  */
 function updateData() {
     var numItems = 128;
@@ -275,10 +275,10 @@ function updateData() {
     // If more than one record has displayed and there is an even number then send data to the cloud
     if (iterations > 1 && iterations % 2 === 0) {
     	    var data;
-    	
+
     	    if (mode === "ecg") {
     	    	    data = generateData(++beats);
-    	    	} else {    	    		
+    	    	} else {
     	    		voltage = randomData[Math.floor(Math.random() * randomData.length)][1];
             data = generateData(voltage);
         }
@@ -294,7 +294,7 @@ function updateData() {
  * generateData
  * Set IoT data depending on the run mode for the simulator.
  * @param {String} n
- * 
+ *
  */
 function generateData(n) {
     var returnValue = {};
@@ -347,7 +347,7 @@ function generateData(n) {
 /**
  * initialize
  * Null out the chart. Get the location of the user for the sensor location.
- * 
+ *
  */
 function initialize() {
     drawChart([]);
@@ -368,7 +368,7 @@ function initialize() {
  * drawChart
  * Draw a new version of the Google chart with updated data points.
  * @param {Array} rawData
- * 
+ *
  */
 function drawChart(rawData) {
 
@@ -417,7 +417,7 @@ function drawChart(rawData) {
 
 /*************************************************************************************************
 
-  Utility Functions 
+  Utility Functions
 
 *************************************************************************************************/
 function randomInt(begin, end) {
@@ -484,14 +484,20 @@ $(document).ready(function() {
         if (validateSettings()) {
             $("#form-content").modal('hide');
             $('#Connect').prop('disabled', false);
-            
+
             // Set variables equal to form values
             mode = $('#mode').val();
+            if (mode == 'ecg') {
+              $("#page-header").html("ECG Simulator");
+            }
+            else if (mode == 'volt') {
+              $("#page-header").html("Voltage Simulator");
+            }
             deviceId = $('#deviceId').val();
             deviceType = $('#deviceType').val();
             orgId = $('#orgId').val();
             authToken = $('#authToken').val();
-            
+
             // Display credential accept in log
             $('#settingsStatus').html('Provided');
             $('#settingsStatus').removeClass('disconnected').addClass('connected');
